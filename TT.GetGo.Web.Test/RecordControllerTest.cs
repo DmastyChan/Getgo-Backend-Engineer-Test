@@ -59,64 +59,64 @@ namespace TT.GetGo.Web.Test
             result.Should().BeOfType(typeof(OkObjectResult));
         }
 
-        [Fact]
-        public void RecordController_Search_ReturnOk()
-        {
-            // Arrange 
-            var request = new SearchRequest()
-            {
-                User = new UserRequest()
-                {
-                    X = 1,
-                    Y = 2,
-                }
-            };
+        //[Fact]
+        //public void RecordController_Search_ReturnOk()
+        //{
+        //    // Arrange 
+        //    var request = new SearchRequest()
+        //    {
+        //        User = new UserRequest()
+        //        {
+        //            X = 1,
+        //            Y = 2,
+        //        }
+        //    };
 
-            var controller = new RecordController(_carServices, _recordServices, _locationServices, _webHelper, _mapper,
-                _carWorkflow, _userRequestValidator, _bookRequestValidator, _searchRequestValidator,
-                _reachCarRequestValidator);
+        //    var controller = new RecordController(_carServices, _recordServices, _locationServices, _webHelper, _mapper,
+        //        _carWorkflow, _userRequestValidator, _bookRequestValidator, _searchRequestValidator,
+        //        _reachCarRequestValidator);
 
-            // Act
-            var result = controller.Search(search: request);
+        //    // Act
+        //    var result = controller.Search(search: request);
 
-            // Assert 
-            result.Should().NotBeNull();
-            result.Should().BeOfType(typeof(OkObjectResult));
-        }
+        //    // Assert 
+        //    result.Should().NotBeNull();
+        //    result.Should().BeOfType(typeof(OkObjectResult));
+        //}
 
-        [Fact]
-        public void carWorkflow_Reach_ReturnTrue()
-        {
-            var cars = A.Fake<ReachReturnDTO>();
+        //[Fact]
+        //public void carWorkflow_Reach_ReturnTrue()
+        //{
+        //    var cars = A.Fake<ReachReturnDTO>();
 
-            // Arrange 
-            var carId = 2;
-            int userX = 2;
-            int userY = 2;
+        //    // Arrange 
+        //    var carId = 2;
+        //    int userX = 2;
+        //    int userY = 2;
 
-            A.CallTo(() => _carWorkflow.Reach(carId, userX, userY))
-                .Returns(cars);
+        //    A.CallTo(() => _carWorkflow.Reach(carId, userX, userY))
+        //        .Returns(cars);
 
-            var controller = new RecordController(_carServices, _recordServices, _locationServices, _webHelper, _mapper,
-                _carWorkflow, _userRequestValidator, _bookRequestValidator, _searchRequestValidator,
-                _reachCarRequestValidator);
+        //    var controller = new RecordController(_carServices, _recordServices, _locationServices, _webHelper, _mapper,
+        //        _carWorkflow, _userRequestValidator, _bookRequestValidator, _searchRequestValidator,
+        //        _reachCarRequestValidator);
 
-            // Act
-            var result = controller.ReachAsync(new ReachCarRequest()
-            {
-                CarId = carId,
-                User = new UserRequest()
-                {
-                    X = userX,
-                    Y = userY
-                }
-            });
-            var okResult = result as ObjectResult;
+        //    // Act
+        //    var result = controller.ReachAsync(new ReachCarRequest()
+        //    {
+        //        CarId = carId,
+        //        User = new UserRequest()
+        //        {
+        //            X = userX,
+        //            Y = userY
+        //        }
+        //    });
+        //    var okResult = result as ObjectResult;
             
-            // Assert 
-            okResult.Should().NotBeNull();
-            okResult?.StatusCode.Should().Be(200);
-        }
+        //    // Assert 
+        //    Assert.NotNull(result);
+        //    Assert.Equal(201, okResult.StatusCode);
+        //}
 
 
         [Fact]
