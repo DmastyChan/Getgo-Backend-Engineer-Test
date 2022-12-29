@@ -1,0 +1,7 @@
+﻿dotnet ef database update -p TT.GetGo.Web 
+dotnet ef database drop -p TT.GetGo.Web -f
+dotnet ef migrations add InitialCreate -p TT.GetGo.Web
+dotnet ef migrations remove -p TT.GetGo.Web
+
+
+https://mobiletonster.com/blog/code/add-sqlite-db-to-asp.net-core-using-ef-core-code-first
