@@ -25,7 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TT.GetGo.Core\TT.GetGo.Core.csproj" />
     <ProjectReference Include="..\TT.GetGo.Services\TT.GetGo.Services.csproj" />
     <ProjectReference Include="..\TT.GetGo.Web\TT.GetGo.Web.csproj" />
   </ItemGroup>
