@@ -3,6 +3,7 @@ using FakeItEasy;
 using FluentAssertions;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using TT.GetGo.Core.Domain;
@@ -132,10 +133,38 @@ namespace TT.GetGo.Web.Test
 
             // Act
             var result = controller.BookAsync(book: request);
+            var okResult = result as ObjectResult;
 
             // Assert 
-            result.Should().BeOfType(typeof(BadRequestResult));
+            Assert.Equal(StatusCodes.Status400BadRequest, okResult.StatusCode);
         }
+
+        [Fact]
+        public void RecordController_ReachAsync_ReturnOK()
+        {
+            // Arrange 
+            var request = new ReachCarRequest()
+            {
+                CarId = 2,
+                User = new UserRequest()
+                {
+                    X = 2,
+                    Y = 3,
+                }
+            };
+
+            var controller = new RecordController(_carServices, _recordServices, _locationServices, _webHelper, _mapper,
+                _carWorkflow, _userRequestValidator, _bookRequestValidator, _searchRequestValidator,
+                _reachCarRequestValidator);
+
+            // Act
+            var result = controller.ReachAsync(user: request);
+
+            // Assert 
+             Assert.Equal(StatusCodes.Status200OK, ((ObjectResult)result).StatusCode);
+        }
+
+        
 
         [Fact]
         public void userRequestValidator_X_Y_Checking_ReturnTrue()
