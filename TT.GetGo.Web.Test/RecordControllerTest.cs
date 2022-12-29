@@ -2,10 +2,7 @@
 using FakeItEasy;
 using FluentAssertions;
 using FluentValidation;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 using TT.GetGo.Core.Domain;
 using TT.GetGo.Services.Helper;
 using TT.GetGo.Services.Records;
@@ -88,83 +85,39 @@ namespace TT.GetGo.Web.Test
         }
 
         [Fact]
-        public void RecordController_Book_ReturnOK()
+        public void carWorkflow_Reach_ReturnTrue()
         {
+            var cars = A.Fake<ReachReturnDTO>();
+
             // Arrange 
-            var request = new BookRequest()
-            {
-                CarId = 1,
-                User = new UserRequest()
-                {
-                    X = 2,
-                    Y = 3,
-                }
-            };
+            var carId = 2;
+            int userX = 2;
+            int userY = 2;
+
+            A.CallTo(() => _carWorkflow.Reach(carId, userX, userY))
+                .Returns(cars);
 
             var controller = new RecordController(_carServices, _recordServices, _locationServices, _webHelper, _mapper,
                 _carWorkflow, _userRequestValidator, _bookRequestValidator, _searchRequestValidator,
                 _reachCarRequestValidator);
 
             // Act
-            var result = controller.BookAsync(book: request);
-
-            // Assert 
-            result.Should().BeOfType(typeof(OkObjectResult));
-        }
-
-        [Fact]
-        public void RecordController_Book_ReturnBad()
-        {
-            // Arrange 
-            // This car already been booked
-            var request = new BookRequest()
+            var result = controller.ReachAsync(new ReachCarRequest()
             {
-                CarId = 2,
+                CarId = carId,
                 User = new UserRequest()
                 {
-                    X = 1,
-                    Y = 2,
+                    X = userX,
+                    Y = userY
                 }
-            };
-
-            var controller = new RecordController(_carServices, _recordServices, _locationServices, _webHelper, _mapper,
-                _carWorkflow, _userRequestValidator, _bookRequestValidator, _searchRequestValidator,
-                _reachCarRequestValidator);
-
-            // Act
-            var result = controller.BookAsync(book: request);
+            });
             var okResult = result as ObjectResult;
-
+            
             // Assert 
-            Assert.Equal(StatusCodes.Status400BadRequest, okResult.StatusCode);
+            okResult.Should().NotBeNull();
+            okResult?.StatusCode.Should().Be(200);
         }
 
-        [Fact]
-        public void RecordController_ReachAsync_ReturnOK()
-        {
-            // Arrange 
-            var request = new ReachCarRequest()
-            {
-                CarId = 2,
-                User = new UserRequest()
-                {
-                    X = 2,
-                    Y = 3,
-                }
-            };
-
-            var controller = new RecordController(_carServices, _recordServices, _locationServices, _webHelper, _mapper,
-                _carWorkflow, _userRequestValidator, _bookRequestValidator, _searchRequestValidator,
-                _reachCarRequestValidator);
-
-            // Act
-            var result = controller.ReachAsync(user: request);
-
-            // Assert 
-             Assert.Equal(StatusCodes.Status200OK, ((ObjectResult)result).StatusCode);
-        }
-
-        
 
         [Fact]
         public void userRequestValidator_X_Y_Checking_ReturnTrue()
