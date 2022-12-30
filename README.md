@@ -111,3 +111,36 @@ Parameter :
     <td>User's Geo Y </td>
   </tr>
  </table>
+ 
+ <br/>
+ Example : <br/>
+ ============================================================== <br/>
+ 
+ Example 1 : <br/>
+ ![image](https://user-images.githubusercontent.com/121627145/210026773-09212489-01b8-4147-b70f-7f61e5793035.png)
+ 
+ <br/>
+ 
+ Example 2 : <br/>
+ ![image](https://user-images.githubusercontent.com/121627145/210026831-68337600-29db-4c6b-85d0-150cf86d9cba.png)
+ 
+ <br/>
+ 
+ Example 3 : ( No allow to book , it is booked ) <br/>
+![image](https://user-images.githubusercontent.com/121627145/210026867-a511b417-452e-4a06-b56a-f8c9257d4485.png)
+
+Example 4 : ( No allow to book, it is because the user location is invalid, out of the distance ) <br/>
+![image](https://user-images.githubusercontent.com/121627145/210026902-f7837583-48ef-47ba-a4bf-eba1397309c5.png)
+
+Example 5 : ( No allow to book, it is because the user location is invalid, out of the distance ) <br/>
+![image](https://user-images.githubusercontent.com/121627145/210026902-f7837583-48ef-47ba-a4bf-eba1397309c5.png)
+
+Example 6 : ( Book Successfully ) <br/>
+![image](https://user-images.githubusercontent.com/121627145/210026956-9ce1ee5d-f5fe-449b-a532-210becf36bec.png)
+
+Example 7 : ( Reach a Car Home lot ) <br/>
+![image](https://user-images.githubusercontent.com/121627145/210026985-27e303ef-87a9-4911-b27a-e815e647fe5b.png)
+
+
+
+
