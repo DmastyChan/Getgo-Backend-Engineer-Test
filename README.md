@@ -141,6 +141,9 @@ Example 6 : ( Book Successfully ) <br/>
 Example 7 : ( Reach a Car Home lot ) <br/>
 ![image](https://user-images.githubusercontent.com/121627145/210026985-27e303ef-87a9-4911-b27a-e815e647fe5b.png)
 
+Example 8 : ( Invalid Geo X ) <br/>
+![image](https://user-images.githubusercontent.com/121627145/210027127-8a4f5b20-d32c-4faf-aef5-ae45e3b7a064.png)
+
 
 
 
